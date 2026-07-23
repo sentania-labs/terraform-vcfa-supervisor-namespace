@@ -1,19 +1,19 @@
-output "supervisor_namespace" {
-  description = "Created SupervisorNamespace manifest"
-  value       = kubernetes_manifest.this.manifest
+output "id" {
+  description = "ID of the created Supervisor Namespace"
+  value       = vcfa_supervisor_namespace.this.id
 }
 
-output "namespace_name" {
-  description = "Name of the created Supervisor Namespace"
-  value       = var.namespace_name
+output "name" {
+  description = "Generated name of the created Supervisor Namespace"
+  value       = vcfa_supervisor_namespace.this.name
 }
 
 output "phase" {
-  description = "Current phase reported on the SupervisorNamespace status, if the API has populated it"
-  value       = try(kubernetes_manifest.this.object.status.phase, null)
+  description = "Current phase reported on the Supervisor Namespace"
+  value       = vcfa_supervisor_namespace.this.phase
 }
 
-output "uid" {
-  description = "Kubernetes UID of the created SupervisorNamespace resource"
-  value       = try(kubernetes_manifest.this.object.metadata.uid, null)
+output "ready" {
+  description = "Whether the Supervisor Namespace is in a ready status"
+  value       = vcfa_supervisor_namespace.this.ready
 }
