@@ -1,6 +1,8 @@
 # terraform-vcfa-supervisor-namespace
 
-Terraform module — creates a VCFA Supervisor Namespace using the CCI Kubernetes provider. Requires an established VCFA connection (provider configured with URL, org, and API token).
+Terraform module — creates a VCFA Supervisor Namespace using the native `vcfa_supervisor_namespace` resource from the `vmware/vcfa` provider (>= 1.2). Requires an established VCFA connection (provider configured with URL, org, and API token).
+
+As of v0.2.0 this module manages the Supervisor Namespace directly through VCFA's Terraform provider rather than applying a `SupervisorNamespace` CRD. The v0.1.0 implementation applied that CRD via the `kubernetes` provider's `kubernetes_manifest` resource against the VCFA-issued kubeconfig; that approach remains available as a fallback (pin to the `v0.1.0` tag) if a future need arises that the native resource can't express.
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 

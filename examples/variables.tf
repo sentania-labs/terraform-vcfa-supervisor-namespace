@@ -1,6 +1,6 @@
-variable "namespace_name" {
+variable "name_prefix" {
   type        = string
-  description = "Name of the Supervisor Namespace to create"
+  description = "Prefix used by VCFA to generate the Supervisor Namespace name"
 }
 
 variable "project_name" {
@@ -19,9 +19,40 @@ variable "region_name" {
   description = "Region in which to create the Supervisor Namespace"
 }
 
+variable "vpc_name" {
+  type        = string
+  description = "Name of the VPC the Supervisor Namespace attaches to"
+}
+
 variable "class_name" {
   type        = string
   description = "Namespace class to apply"
+}
+
+variable "storage_classes" {
+  type = map(object({
+    limit = string
+  }))
+  description = "Storage Class overrides, keyed by Storage Class name"
+  default     = {}
+}
+
+variable "vm_classes" {
+  type        = list(string)
+  description = "Names of VM Classes to grant to the Supervisor Namespace"
+  default     = []
+}
+
+variable "zones" {
+  type = list(object({
+    name               = string
+    cpu_limit          = string
+    cpu_reservation    = string
+    memory_limit       = string
+    memory_reservation = string
+  }))
+  description = "Zone overrides for the Supervisor Namespace"
+  default     = []
 }
 
 ########################################
